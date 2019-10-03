@@ -13,6 +13,7 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService{
     @Autowired
     private MovieRepository movieRepository;
+
     @Autowired
     public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -112,5 +113,15 @@ public class MovieServiceImpl implements MovieService{
         {
             throw new MovieDoesNotExistsException("movie does not exists with given id= "+Id);
         }
+    }
+
+    @Override
+    public List<Movie> FindByMovieName(String movieName) throws MovieDoesNotExistsException {
+
+        List<Movie> namedList = movieRepository.findByMovieName(movieName);
+        if(namedList==null)
+            throw new MovieDoesNotExistsException("movie not found with given name = "+movieName);
+
+        return namedList;
     }
 }

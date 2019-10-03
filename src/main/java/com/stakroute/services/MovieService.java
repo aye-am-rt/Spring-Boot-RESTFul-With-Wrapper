@@ -13,4 +13,5 @@ public interface MovieService {
     public List<Movie> updateMovieById(Movie newMovieObj) throws MovieDoesNotExistsException;
     public List<Movie> deleteMovieById(int Id) throws MovieDoesNotExistsException;
     public Movie patchMovieById(int Id,Movie movie) throws MovieDoesNotExistsException;
+    public List<Movie> FindByMovieName(String MOVIE_NAME) throws MovieDoesNotExistsException;
 }

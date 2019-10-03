@@ -1,11 +1,20 @@
 package com.stakroute.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Movie {
         @Id
         @GeneratedValue
@@ -16,7 +25,7 @@ public class Movie {
         String category;
         BigDecimal budget;
         String casts;
-
+/*
     public int getId() {
         return id;
     }
@@ -85,5 +94,5 @@ public class Movie {
                 ", budget=" + budget +
                 ", casts='" + casts + '\'' +
                 '}';
-    }
+    }*/
 }

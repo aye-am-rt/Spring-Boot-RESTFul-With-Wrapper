@@ -1,13 +1,9 @@
 package com.stakroute.controller;
 
 import com.stakroute.domain.Movie;
-import com.stakroute.domain.User;
 import com.stakroute.exceptions.MovieAlreadyExistsException;
 import com.stakroute.exceptions.MovieDoesNotExistsException;
-import com.stakroute.exceptions.UserAlreadyExistsException;
-import com.stakroute.exceptions.UserDoesNotExists;
 import com.stakroute.services.MovieService;
-import com.stakroute.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -117,4 +113,20 @@ public class MovieController {
         }
         return responseEntity;
     }
+
+    @GetMapping("/movies/search")
+    public ResponseEntity<?> getMovieByNameHttpHandler(@RequestParam String movieName)
+    {
+        ResponseEntity responseEntity;
+        try
+        {
+            responseEntity= new ResponseEntity<List<Movie>>(movieService.FindByMovieName(movieName),HttpStatus.OK);
+        }
+        catch (MovieDoesNotExistsException ex)
+        {
+            responseEntity= new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return responseEntity;
+    }
+
 }
